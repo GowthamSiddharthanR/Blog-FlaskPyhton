@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Edit Post</h2>
+    <form method="POST">
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px;">Title</label>
+            <input type="text" name="title" value="{{ post.title }}" required>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px;">Image URL</label>
+            <input type="text" name="image_url" value="{{ post.image_url or '' }}" placeholder="https://example.com/image.jpg">
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px;">Content</label>
+            <textarea name="content" required>{{ post.content }}</textarea>
+        </div>
+        
+        <div class="action-links">
+            <button type="submit" class="btn">Update Post</button>
+            <a href="{{ url_for('post', post_id=post._id) }}" class="btn">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

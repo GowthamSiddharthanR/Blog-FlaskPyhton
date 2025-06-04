@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Create New Post</h2>
+    <form method="POST">
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px;">Title</label>
+            <input type="text" name="title" placeholder="Enter post title" required>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px;">Image URL</label>
+            <input type="text" name="image_url" placeholder="https://example.com/image.jpg">
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px;">Content</label>
+            <textarea name="content" placeholder="Write your post content here" required></textarea>
+        </div>
+        
+        <div class="action-links">
+            <button type="submit" class="btn">Publish Post</button>
+            <a href="{{ url_for('index') }}" class="btn">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Login</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {# Get only the last message #}
+            {% set category, message = messages[1] %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endif %}
+    {% endwith %}
+    <form method="POST">
+        <div class="form-group">
+            <div><label for="username">Username</label></div>
+            <input class="loginput" type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <div><label for="password">Password</label></div>
+            <input class="loginput" style="margin-bottom: 20px;" type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn">Login</button>
+    </form>
+    <p>Don't have an account? <a style="color: blue; text-decoration: none;" href="{{ url_for('register') }}">Register here</a></p>
+</div>
+{% endblock %}
