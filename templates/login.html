@@ -5,7 +5,7 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {# Get only the last message #}
-            {% set category, message = messages[1] %}
+            {% set category, message = messages[0] %}
             <div class="alert alert-{{ category }}">{{ message }}</div>
         {% endif %}
     {% endwith %}

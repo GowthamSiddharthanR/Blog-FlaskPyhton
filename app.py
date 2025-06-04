@@ -9,6 +9,7 @@ import zlib
 import datetime
 from functools import wraps
 from flask import abort
+import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -188,5 +189,6 @@ def delete(post_id):
     return redirect(url_for('index'))
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Get port from environment (Render provides it)
+    app.run(host="0.0.0.0", port=port, debug=True)
