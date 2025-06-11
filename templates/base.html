@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://app.aerochat.ai/static/chatbox.js" data-src="https://app.aerochat.ai/chat/script/5ef989618b54605064ba839506b4889b" color="red"></script>
     <title>Wandering with Siddharth</title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -220,7 +221,12 @@
     <div class="auth-buttons">
       {% if current_user.is_authenticated %}
       <h3 style="padding-right: 20px; text-transform: capitalize;">Hi, {{ current_user.user_data.username }}!</h3>
-      <a style="float:inline-end; margin-right: 20px;" href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+      <a style="float:inline-end; margin-right: 20px;" href="{{ url_for('logout') }}" onclick="return alertLogout()" class="btn btn-danger">Logout</a>
+      <script>
+        function alertLogout(){
+          return alert("Are you sure You want to logout?")
+        }
+      </script>
       {% else %}
       <a style="margin: 20px;" href="{{ url_for('login') }}" class="btn">Login</a>
       <a style="margin-right: 20px;"  href="{{ url_for('register') }}" class="btn">Register</a>
@@ -235,7 +241,7 @@
     </div>
 
     <div class="footer">
-      <h5 style="margin: 0">© Siddharth 2024</h5>
+      <h5 style="margin: 0">© Siddharth 2025</h5>
       <h5 style="margin: 0">Blog powered by Spartans</h5>
     </div>
 </body>
