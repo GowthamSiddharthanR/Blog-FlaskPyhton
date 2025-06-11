@@ -10,11 +10,26 @@ import datetime
 from functools import wraps
 from flask import abort
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
+
+from flask_mail import Mail, Message
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
 # Replace with a secure secret key in production
 app.secret_key = 'your-secret-key-here'
+# Flask-Mail configuration
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+
+mail = Mail(app)
+
 
 # Flask-Login setup
 login_manager = LoginManager()
@@ -187,6 +202,37 @@ def edit(post_id):
 def delete(post_id):
     posts_collection.delete_one({'_id': ObjectId(post_id)})
     return redirect(url_for('index'))
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+
+        if not name or not email or not message:
+            flash('All fields are required!', 'error')
+            return redirect(url_for('contact'))
+
+        try:
+            msg = Message(subject='New Contact Message',
+                          sender=app.config['MAIL_USERNAME'],
+                          recipients=[app.config['MAIL_USERNAME']],
+                          body=f"From: {name} <{email}>\n\n{message}")
+            mail.send(msg)
+            flash('Message sent successfully to your email!', 'success')
+        except Exception as e:
+            print(f"Email sending failed: {e}")
+            flash('Failed to send message. Please try again later.', 'error')
+
+        return redirect(url_for('contact'))
+
+    return render_template('contact.html')
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 
 
 if __name__ == "__main__":
