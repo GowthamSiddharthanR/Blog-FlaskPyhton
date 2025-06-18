@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script src="https://app.aerochat.ai/static/chatbox.js" data-src="https://app.aerochat.ai/chat/script/5ef989618b54605064ba839506b4889b" color="red"></script>
+  <head>
+    <script
+      src="https://aerochat-staging.dummywebdemo.xyz/static/chatbox.js"
+      data-src="https://aerochat-staging.dummywebdemo.xyz/chat/script/def7cab25f95b63797c880434969e0be"
+      color=""
+    ></script>
     <title>Wandering with Siddharth</title>
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       :root {
         --primary-color: #6c5ce7;
@@ -25,6 +33,7 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
+        padding-bottom: 60px; /* space for mobile footer buttons */
       }
 
       h1,
@@ -32,13 +41,16 @@
         color: white;
         text-transform: capitalize;
       }
+
       h3::first-letter {
         text-transform: uppercase;
       }
+
       h3 a {
         text-decoration: none;
         color: var(--primary-color);
       }
+
       h1 a {
         text-decoration: none;
         color: inherit;
@@ -57,24 +69,6 @@
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         margin: 20px 0;
-      }
-      .btne {
-        display: inline-block;
-        padding: 2px 10px;
-        background-color: var(--primary-color);
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        font-size: small;
-      }
-      .btnd {
-        display: inline-block;
-        padding: 2px 10px;
-        background-color: maroon;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        font-size: small;
       }
 
       .btn {
@@ -114,27 +108,10 @@
         background-color: var(--surface-color);
         color: var(--text-color);
       }
-      .loginput {
-        width: 50%;
-        padding: 12px;
-        margin: 8px 0;
-        border: 1px solid var(--border-color);
-        border-radius: 6px;
-        box-sizing: border-box;
-        font-family: inherit;
-        background-color: var(--surface-color);
-        color: var(--text-color);
-      }
+
+      .loginput,
       .textareaLog {
         width: 50%;
-        padding: 12px;
-        margin: 8px 0;
-        border: 1px solid var(--border-color);
-        border-radius: 6px;
-        box-sizing: border-box;
-        font-family: inherit;
-        background-color: var(--surface-color);
-        color: var(--text-color);
       }
 
       textarea {
@@ -180,33 +157,18 @@
         text-decoration: none;
       }
 
-      .action-links {
-        margin: 20px 0;
+      .auth-buttons {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
         gap: 10px;
       }
 
-      .auth-buttons {
-        display: flex;
-        /* Align items to the start and end of the flex container */
-        justify-content: space-between;
-        align-items: center; /* Vertically align items */
-        margin-bottom: 20px;
-        flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-        gap: 10px; /* Space between items when wrapping */
-      }
-
-      /* Style for the username greeting to push it left */
       .auth-buttons .greeting {
-        margin-right: auto; /* Pushes this element to the left, pushing others right */
-        margin-left: 0; /* Ensure no left margin */
-        padding-right: 20px; /* Add some space between greeting and buttons */
-      }
-
-      .auth-buttons a {
-        /* Remove float and inline margins if they were set directly */
-        margin-right: 0;
-        margin-left: 0;
+        margin-right: auto;
+        padding-right: 20px;
       }
 
       .footer {
@@ -214,77 +176,102 @@
         justify-content: space-around;
         align-items: center;
         margin-bottom: 20px;
-        flex-wrap: wrap; /* Allow items to wrap */
-        gap: 10px; /* Space between footer items */
+        flex-wrap: wrap;
+        gap: 10px;
       }
 
-      /* Mobile responsiveness */
+      /* Hide mobile footer buttons on desktop */
+      .mobile-footer-buttons {
+        display: none;
+      }
+
       @media (max-width: 700px) {
         body {
-          font-size: 15px; /* Slightly reduce base font size for smaller screens */
+          font-size: 15px;
         }
+
         .post-list {
           grid-template-columns: 1fr;
         }
-        
+
         .action-links {
           flex-direction: column;
         }
 
         .loginput,
-        .textareaLog { /* Apply to both for consistency */
+        .textareaLog {
           width: 100%;
         }
 
         .auth-buttons {
-          flex-direction: column; /* Stack all items vertically */
-          align-items: flex-start; /* Align all items to the left */
+          flex-direction: column;
+          align-items: flex-start;
         }
 
         .auth-buttons .greeting {
-            margin-right: 0; /* Remove auto margin on mobile */
-            padding-right: 0; /* Remove padding */
-            margin-bottom: 10px; /* Add space below greeting */
+          margin-right: 0;
+          padding-right: 0;
+          margin-bottom: 10px;
         }
 
         .auth-buttons a {
-          width: 100%; /* Make buttons full width */
-          text-align: center; /* Center text in buttons */
-          margin-bottom: 10px; /* Add space between buttons */
+          width: 100%;
+          text-align: center;
+          margin-bottom: 10px;
         }
 
         .footer {
-          flex-direction: column; /* Stack footer items vertically */
+          flex-direction: column;
           text-align: center;
+        }
+
+        .auth-buttons .btn,
+        .auth-buttons .btn-danger {
+          display: none; /* hide top buttons */
+        }
+
+        .mobile-footer-buttons {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: var(--surface-color);
+          display: flex;
+          justify-content: space-around;
+          padding: 10px;
+          border-top: 1px solid var(--border-color);
+          z-index: 9999;
+        }
+
+        .mobile-footer-buttons a {
+          flex: 1;
+          text-align: center;
+          padding: 10px;
+          margin: 0 5px;
+          font-size: 14px;
+          border-radius: 4px;
         }
       }
 
-      /* Optional: Even smaller screens, if needed */
       @media (max-width: 480px) {
         body {
-          padding: 0 10px; /* Reduce padding further on very small screens */
+          padding: 0 10px;
         }
       }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="auth-buttons">
       {% if current_user.is_authenticated %}
-      <h3 class="greeting">Hi, {{ current_user.user_data.username }}!</h3>
-      <a href="{{ url_for('contact') }}"  class="btn ">✉️ Contact </a>
-            <a href="{{ url_for('about') }}"  class="btn ">🧍About</a>
-
-      <a href="{{ url_for('logout') }}" onclick="return alertLogout()" class="btn btn-danger">Logout</a>
-
-      
-      <script>
-        function alertLogout(){
-          return alert("Are you sure You want to logout?")
-        }
-      </script>
+        <h3 class="greeting">Hi, {{ current_user.user_data.username }}!</h3>
+        <a href="{{ url_for('contact') }}" class="btn">✉️ Contact </a>
+        <a href="{{ url_for('about') }}" class="btn">🧍About</a>
+        <a href="{{ url_for('logout') }}" onclick="return alertLogout()" class="btn btn-danger">Logout</a>
       {% else %}
-      <a href="{{ url_for('login') }}" class="btn">Login</a>
-      <a href="{{ url_for('register') }}" class="btn">Register</a>
+        <div style="margin: 20px">
+          <a href="{{ url_for('login') }}" class="btn">Login</a>
+          <a href="{{ url_for('register') }}" class="btn">Register</a>
+        </div>
       {% endif %}
     </div>
 
@@ -299,5 +286,20 @@
       <h5>© Siddharth 2025</h5>
       <h5>Blog powered by Spartans</h5>
     </div>
-</body>
+
+    <!-- Mobile bottom buttons -->
+    {% if current_user.is_authenticated %}
+    <div class="mobile-footer-buttons">
+      <a href="{{ url_for('contact') }}" class="btn">✉️ Contact</a>
+      <a href="{{ url_for('about') }}" class="btn">🧍About</a>
+      <a href="{{ url_for('logout') }}" onclick="return alertLogout()" class="btn btn-danger">Logout</a>
+    </div>
+    {% endif %}
+
+    <script>
+      function alertLogout() {
+        return confirm("Are you sure you want to logout?");
+      }
+    </script>
+  </body>
 </html>

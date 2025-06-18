@@ -24,8 +24,8 @@
       <p>{{ post.content|truncate(200) }}</p>
       <div>
         {% if current_user.is_authenticated and current_user.is_admin %}
-        <a href="{{ url_for('edit', post_id=post._id) }}" class="btne">Edit</a>
-        <a href="{{ url_for('delete', post_id=post._id) }}" class="btnd"
+        <a href="{{ url_for('edit', post_id=post._id) }}" class="btn">Edit</a>
+        <a href="{{ url_for('delete', post_id=post._id) }}" class="btn btn-danger"
           >Delete</a
         >
         {% endif %}
